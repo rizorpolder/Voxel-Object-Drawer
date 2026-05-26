@@ -23,19 +23,5 @@ namespace Views
 			TransparentRenderer = transparentRenderer;
 			TransparentFilter = transparentFilter;
 		}
-
-		public void SetRenderersEnabled(bool enabled)
-		{
-			OpaqueRenderer.enabled = enabled;
-			TransparentRenderer.enabled = enabled;
-		}
-
-		public void SetColliderLayer(int layer)
-		{
-			if (layer < 0 || Collider == null)
-				return;
-
-			Collider.gameObject.layer = layer;
-		}
 	}
 }
