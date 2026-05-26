@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>ZstdNet</id>
+    <version>1.5.7</version>
+    <title>ZstdNet</title>
+    <authors>SKB Kontur</authors>
+    <license type="expression">BSD-3-Clause</license>
+    <licenseUrl>https://licenses.nuget.org/BSD-3-Clause</licenseUrl>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/skbkontur/ZstdNet</projectUrl>
+    <description>Zstd compression library wrapper for .NET</description>
+    <copyright>Copyright © SKB Kontur 2016-2026</copyright>
+    <tags>zstd zstandard compression</tags>
+    <repository type="git" url="https://github.com/skbkontur/ZstdNet" branch="refs/heads/master" commit="04902458f73940a2163c330b4c412852ac53ade0" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="System.Memory" version="4.6.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1" />
+    </dependencies>
+  </metadata>
+</package>
