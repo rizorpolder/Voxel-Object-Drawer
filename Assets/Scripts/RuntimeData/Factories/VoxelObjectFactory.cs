@@ -11,18 +11,15 @@ namespace RuntimeData.Factories
 	public class VoxelObjectFactory
 	{
 		private readonly ChunkFactory _chunkFactory;
-		
+		private readonly VoxelObjectFactory _objectFactory;
 		private ObjectsPool<VoxelObjectView> _pool;
 
-		public VoxelObjectFactory()
+		public VoxelObjectFactory(VoxelObjectFactory objectFactory, TMeshAlgorithm algorithm)
 		{
-			_chunkFactory = new ChunkFactory(TMeshAlgorithm.GreedyMesh);
+			_objectFactory = objectFactory;
+			_chunkFactory = new ChunkFactory(algorithm);
 		}
 
-		public void Initialize(VoxelObjectViewPool pool)
-		{
-			_pool = pool.GetPool();
-		}
 
 		public void SetBuildMode(VoxelBuildMode mode)
 		{
@@ -35,7 +32,7 @@ namespace RuntimeData.Factories
 			{
 				return null;
 			}
-			
+
 			var rt = new ObjectRuntime();
 
 			var view = _pool.GetItem();

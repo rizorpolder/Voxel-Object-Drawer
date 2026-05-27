@@ -1,5 +1,4 @@
 using UnityEngine;
-using VContainer;
 using Views;
 
 namespace Common.ObjectsPool
@@ -8,14 +7,15 @@ namespace Common.ObjectsPool
 	{
 		[SerializeField] private VoxelObjectView _prefab;
 
-		[Inject] ObjectsPoolFactory _factory;
 
 		ObjectsPool<VoxelObjectView> _pool;
 
-
-		public ObjectsPool<VoxelObjectView> GetPool()
+		private void Start()
 		{
-			return _pool ?? _factory.CreatePool(_prefab, transform);
+			_pool = new ObjectsPool<VoxelObjectView>(transform, _prefab);
 		}
+
+		public VoxelObjectView GetObject() => _pool.GetItem();
+		public void ReturnObject(VoxelObjectView view) => _pool.ReturnToPool(view);
 	}
 }

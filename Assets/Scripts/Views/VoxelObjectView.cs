@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Common.ObjectsPool;
 using RuntimeData;
 using UnityEngine;
-using VContainer;
 
 namespace Views
 {
@@ -17,16 +15,17 @@ namespace Views
 		private ObjectsPool<Chunk> _chunksPool;
 
 		private bool _isInitialized;
-		private bool _originalIsVisible;
-		private bool _modeSubscribed;
 
-		[Inject] private ObjectsPoolFactory _poolFactory;
 
 		public List<ChunkMeshContainer> Containers => _containers;
 		public Material[] GetOpaqueMaterials() => _opaqueMaterials;
 		public Material[] GetTransparent() => _transparentMaterials;
-		public Guid InstanceID { get; private set; }
-		public Guid TemplateID { get; private set; }
+
+
+		private void Start()
+		{
+			_chunksPool = new ObjectsPool<Chunk>(transform, _chunkPrefab);
+		}
 
 		public void Initialize(ObjectRuntime runtime)
 		{
@@ -39,7 +38,6 @@ namespace Views
 				return;
 			_containers.Clear();
 
-			_chunksPool = _poolFactory.CreatePool(_chunkPrefab, transform);
 			_isInitialized = true;
 		}
 

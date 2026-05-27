@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using VContainer;
-using VContainer.Unity;
 
 namespace Common.ObjectsPool
 {
@@ -16,9 +14,7 @@ namespace Common.ObjectsPool
 		private Queue<T> _freeElements = new Queue<T>();
 
 		public int ActiveItems => _items.Count - _freeElements.Count;
-
-		[Inject] private IObjectResolver _resolver;
-
+		
 		private int _initializeItemsCount = 0;
 
 		public ObjectsPool(Transform parent, T prefab)
@@ -47,7 +43,7 @@ namespace Common.ObjectsPool
 
 		private T CreateItem()
 		{
-			var item = _resolver.Instantiate<T>(_prefab, _poolRoot);
+			var item = GameObject.Instantiate(_prefab, _poolRoot);
 			item.gameObject.SetActive(false);
 			return item;
 		}
